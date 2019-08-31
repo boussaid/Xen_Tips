@@ -1,0 +1,25 @@
+{
+    "legacy_addon_id": "",
+    "title": "تلميحات",
+    "description": "إضافة تسمح لك باظهار تلميحات متغيرة مع كل تحديث للصفحة",
+    "version_id": 1000010,
+    "version_string": "1.0.0",
+    "dev": "بوسعيد مصطفى",
+    "dev_url": "https://twitter.com/bousaid_mustafa",
+    "faq_url": "https://github.com/boussaid",
+    "support_url": "https://github.com/boussaid",
+    "extra_urls": {
+        "Contact": "mailto://bousali@gmail.com"
+    },
+    "require": {
+        "XF": [
+            2010051,
+            "XenForo 2.1.0+"
+        ],
+        "php": [
+            "5.6.0",
+            "PHP 5.6.0+"
+        ]
+    },
+    "icon": "fa-lightbulb-on"
+}

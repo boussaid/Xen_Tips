@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template type="admin" title="bm_tips_edit" version_id="1000010" version_string="1.0.0"><![CDATA[<xf:if is="$tips.isInsert()">
+	<xf:title>{{ phrase('add_tip') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('tipEdit:') }} {$tips.tip_title}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$tips.isUpdate()">
+	<xf:button href="{{ link('tips-admin/delete', $tips) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('tips-admin/save', $tips) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:textboxrow name="tip_title" value="{{ $tips.exists() ? $tips.tip_title : '' }}"
+				maxlength="{{ max_length($tips, 'tip_title') }}"
+				label="{{ phrase('tipTitle') }}"
+				explain="{{ phrase('tip_title_explain') }}" />
+			<xf:editorrow name="tip_message" value="{$tips.tip_message}"
+				maxlength="{{ max_length($tips, 'tip_message') }}"
+				data-min-height="100"
+				placeholder="{{ phrase('tipText...') }}"
+				label="{{ phrase('tipText') }}"
+				removebuttons="{$disabledButtons}" />
+			<xf:checkboxrow>
+				<xf:option name="active" value="1" selected="$tips.active"
+					hint="{{ ($xf.development AND $tips.tip_id) ? phrase('field_value_maintained_addon_upgrade_explain') : '' }}">
+					{{ phrase('enabled') }}
+				</xf:option>
+			</xf:checkboxrow>
+
+		</div>
+		<xf:submitrow sticky="true" icon="save" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="bm_tips_list" version_id="1000010" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('tipsList') }}</xf:title>
+
+<xf:pageaction>
+	<xf:button href="{{ link('tips-admin/add') }}" icon="add">{{ phrase('add_tip') }}</xf:button>
+</xf:pageaction>
+
+<xf:if is="$tip is not empty">
+	<xf:form action="{{ link('tips-admin/toggle') }}" class="block" ajax="true">		
+	<div class="block-outer">
+			<xf:macro template="filter_macros" name="quick_filter" arg-key="tip" arg-class="block-outer-opposite" />
+	</div>	
+		<div class="block-container">
+			<div class="block-body">
+				<xf:datalist data-xf-init="responsive-data-list">
+					<xf:datarow rowtype="header">
+						<xf:cell>{{ phrase('tipTitle') }}</xf:cell>
+						<xf:cell>{{ phrase('tipText') }}</xf:cell>
+						<xf:cell>{{ phrase('tipDate') }}</xf:cell>
+						<xf:cell class="dataList-cell--min">&nbsp;</xf:cell>
+						<xf:cell class="dataList-cell--min">&nbsp;</xf:cell>
+					</xf:datarow>
+					<xf:foreach loop="{$tip}" value="$tips">
+						<xf:datarow 
+									delete="{{ link('tips-admin/delete', $tips) }}" 
+									hash="{$tip.tips}"
+									href="{{ link('tips-admin/edit', $tips) }}">
+							<xf:cell href="{{ link('tips-admin/edit', $tips) }}">
+								{$tips.tip_title}
+							</xf:cell>							
+							<xf:cell href="{{ link('tips-admin/edit', $tips) }}">
+								{{ $tips.tip_message ? bb_code($tips.tip_message, 'tips', '&nbsp;') : '&nbsp;' }}
+							</xf:cell>
+							<xf:cell>
+								<xf:date time="$tips.tip_date" class="contentRow-minor" />
+							</xf:cell>
+							<xf:toggle name="active[{$tips.tip_id}]" selected="$tips.active"
+								class="dataList-cell--separated" submit="true"
+								tooltip="{{ phrase('enable_disable_x', {'title': $tips.tip_title}) }}" />
+						</xf:datarow>
+					</xf:foreach>
+				</xf:datalist>
+			</div>
+			<div class="block-footer">
+				<span class="block-footer-counter">{{ display_totals($tip) }}</span>
+			</div>
+		</div>
+		<xf:pagenav page="{$pagee}" perpage="{$perPage}" total="{$total}"
+					link="tips-admin" params="{$linkFilters}"
+					wrapperclass="block-outer block-outer--after" />
+	</xf:form>
+<xf:else />
+	<div class="blockMessage">{{ phrase('no_items_have_been_created_yet') }}</div>
+</xf:if>]]></template>
+  <template type="admin" title="widget_def_options_random_tips" version_id="1000010" version_string="1.0.0"><![CDATA[]]></template>
+  <template type="public" title="random_tips" version_id="1000010" version_string="1.0.0"><![CDATA[<xf:if is="{{ $xf.visitor->hasPermission('general', 'viewTips') }}">
+	<xf:if is="$tip is not empty">	
+		<div class="block"{{ widget_data($widget) }}>
+			<xf:css src="random_tips.less" />
+			<xf:css src="structured_list.less" />
+			<div class="random-tips">
+				<div class="block-container">
+					<div class="block-body">
+						<div class="structItemContainer">
+							<div class="structItemContainer-group">
+								<div class="structItem structItem--thread">
+									<div class="structItem-cell structItem-cell--icon">
+										<div class="structItem-iconContainer">
+											<xf:fa icon="{$xf.options.tipsicon}" />
+										</div>
+									</div>
+									<div class="structItem-cell structItem-cell--text">
+										<div class="structItem-iconContainer">
+											<div>{$title}</div>
+										</div>
+									</div>
+									<div class="structItem-cell structItem-cell--main" data-xf-init="touch-proxy">
+										<div class="structItem-title">
+											<ul id="tips" style="display:none">
+												<xf:foreach loop="{$tip}" value="$tips">
+													<li>
+														{{ $tips.tip_message ? bb_code($tips.tip_message, 'tips', $tips.tip_date) : '&nbsp;' }}
+													</li>
+												</xf:foreach>
+											</ul>
+											<div id="tip"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<xf:js>
+				var tips = $("ul#tips li");
+				var tipIndex = Math.floor(Math.random() * tips.length );
+				$("#tip").html($(tips[tipIndex]).html());
+			</xf:js>
+
+		</div>
+	<xf:else />
+		<div class="blockMessage">{{ phrase('no_items_have_been_created_yet') }}</div>
+	</xf:if>
+</xf:if>]]></template>
+  <template type="public" title="random_tips.less" version_id="1000010" version_string="1.0.0"><![CDATA[.random-tips
+{
+	margin-top: 10px;
+	margin-bottom: 0;
+	
+	.structItem
+	{
+		width: auto;
+		
+		&-title
+		{
+			font-size: 16px
+		}
+	}
+	.structItem-cell
+	{
+		vertical-align: middle;
+		
+		&.structItem-cell--main
+		{
+			padding: 6px 10px;
+			//direction: ltr
+		}
+		
+		&.structItem-cell--text
+		{
+			position: relative;
+			text-align: center;
+			border-left: 1px solid @xf-borderColor;
+			border-right: 1px solid @xf-borderColor;
+			font-weight: bold
+		}
+		
+		&.structItem-cell--icon
+		{
+			position: relative;
+			text-align: center;
+			font-size: 22px;
+			color: red
+		}
+	}
+}
+
+@media (max-width:900px)
+{
+	.random-tips .structItem
+	{
+		display: block
+	}
+	.random-tips .structItem-cell.structItem-cell--main
+	{
+		display: block;
+		border-top: 1px solid #d9d9d9
+	}
+}]]></template>
+</templates>

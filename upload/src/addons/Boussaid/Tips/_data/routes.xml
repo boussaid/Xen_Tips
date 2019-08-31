@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<routes>
+  <route route_type="admin" route_prefix="tips-admin" format=":str&lt;tip_id&gt;/" controller="Boussaid\Tips\XF:Tips" context="tipsAdmin"/>
+</routes>

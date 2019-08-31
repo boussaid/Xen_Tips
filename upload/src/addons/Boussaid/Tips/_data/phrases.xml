@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="add_tip" version_id="1000010" version_string="1.0.0"><![CDATA[إضافة لمحة]]></phrase>
+  <phrase title="admin_navigation.tips" version_id="1000010" version_string="1.0.0"><![CDATA[التلميحات]]></phrase>
+  <phrase title="admin_navigation.tipsAdmin" version_id="1000010" version_string="1.0.0"><![CDATA[تسيير التلميحات]]></phrase>
+  <phrase title="admin_permission.tips" version_id="1000010" version_string="1.0.0"><![CDATA[إدارة التلميحات]]></phrase>
+  <phrase title="option.tipsDev" version_id="1000010" version_string="1.0.0"><![CDATA[_]]></phrase>
+  <phrase title="option.tipsicon" version_id="1000010" version_string="1.0.0"><![CDATA[إيقونة FA لشريط التلميحات]]></phrase>
+  <phrase title="option_explain.tipsDev" version_id="1000010" version_string="1.0.0"><![CDATA[]]></phrase>
+  <phrase title="option_explain.tipsicon" version_id="1000010" version_string="1.0.0"><![CDATA[اكتب اسم ايقونة Font Awesome ليتم عرضها مع عنوان الشريط]]></phrase>
+  <phrase title="option_group.tips" version_id="1000010" version_string="1.0.0"><![CDATA[خيارات التلميحات]]></phrase>
+  <phrase title="option_group_description.tips" version_id="1000010" version_string="1.0.0"><![CDATA[]]></phrase>
+  <phrase title="permission.general_viewTips" version_id="1000010" version_string="1.0.0"><![CDATA[يمكنه مشاهدة التلميحات]]></phrase>
+  <phrase title="please_enter_valid_tip" version_id="1000010" version_string="1.0.0"><![CDATA[الرجاء إدخال تلميح]]></phrase>
+  <phrase title="tipDate" version_id="1000010" version_string="1.0.0"><![CDATA[تاريخ الإدراج]]></phrase>
+  <phrase title="tipEdit" version_id="1000010" version_string="1.0.0"><![CDATA[تعديل التلميح]]></phrase>
+  <phrase title="tipText" version_id="1000010" version_string="1.0.0"><![CDATA[محتوى اللمحة]]></phrase>
+  <phrase title="tipTitle" version_id="1000010" version_string="1.0.0"><![CDATA[عنوان اللمحة]]></phrase>
+  <phrase title="tip_title_explain" version_id="1000010" version_string="1.0.0"><![CDATA[ضع عنوان لتميز به نوع التلميح الذي ستقوم بكتابته]]></phrase>
+  <phrase title="tipsList" version_id="1000010" version_string="1.0.0"><![CDATA[قائمة التلميحات]]></phrase>
+  <phrase title="widget_def.random_tips" version_id="1000010" version_string="1.0.0"><![CDATA[تلميحات]]></phrase>
+  <phrase title="widget_def_desc.random_tips" version_id="1000010" version_string="1.0.0"><![CDATA[لعرض قطعة التلميحات]]></phrase>
+</phrases>

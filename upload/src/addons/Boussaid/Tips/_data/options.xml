@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <option option_id="tipsDev" edit_format="callback" data_type="string">
+    <default_value></default_value>
+    <edit_format_params>Boussaid\Tips\Dev::devBranding</edit_format_params>
+    <relation group_id="tips" display_order="9999"/>
+  </option>
+  <option option_id="tipsicon" edit_format="textbox" data_type="string">
+    <default_value>fa-lightbulb-on</default_value>
+    <relation group_id="tips" display_order="1"/>
+  </option>
+</options>
